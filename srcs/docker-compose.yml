@@ -10,7 +10,7 @@ services:
     expose:
       - 3306
     volumes:
-      - ~/data/mariadb:?????
+      - ~/data/mariadb:/var/lib/mysql
     networks:
       - app-network
   nginx:
@@ -20,7 +20,7 @@ services:
     restart: unless-stopped
     tty: true
     volumes:
-      - ~/data/static:??????
+      - ~/data/static:/static/
     networks:
       - app-network
     expose:
@@ -34,7 +34,7 @@ services:
     restart: unless-stopped
     tty: true
     volumes:
-      - ~/data/static:??????
+      - ~/data/static:/static/
     networks:
       - app-network
     expose:
