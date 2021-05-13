@@ -1,0 +1,51 @@
+version: '3'
+
+services:
+  mariadb:
+    build:
+      dockerfile: Dockerfile
+      context: ./requirements/mariadb
+    restart: unless-stopped
+    tty: true
+    expose:
+      - 3306
+    volumes:
+      - ~/data/mariadb:?????
+    networks:
+      - app-network
+  nginx:
+    build:
+      dockerfile: Dockerfile
+      context: ./requirements/nginx
+    restart: unless-stopped
+    tty: true
+    volumes:
+      - ~/data/static:??????
+    networks:
+      - app-network
+    expose:
+      - 443
+    depends_on:
+      - wordpress
+  wordpress:
+    build:
+      dockerfile: Dockerfile
+      context: ./requirements/wordpress
+    restart: unless-stopped
+    tty: true
+    volumes:
+      - ~/data/static:??????
+    networks:
+      - app-network
+    expose:
+      - 9000
+    depends_on:
+      - mariadb
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  dbdata:
+    driver: local
