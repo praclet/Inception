@@ -1,4 +1,4 @@
 all:
 	cd srcs && \
 	   source .env && \
-	   docker-compose up
+	   docker-compose up --build
