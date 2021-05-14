@@ -1,5 +1,5 @@
 FROM debian:buster
 
-RUN		   apt-get upgrade				\
-		&& apt-get update				\
+RUN		   apt-get update				\
+		&& apt-get upgrade				\
 		&& apt-get -y install nginx
